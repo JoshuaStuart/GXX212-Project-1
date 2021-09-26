@@ -6,4 +6,5 @@ public class BallScript : MonoBehaviour
 {
     public int value;
 
+
 }
