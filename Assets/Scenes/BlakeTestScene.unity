@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85931583ee4172b40a2d4db793077d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnsRemaining: 50
+  turnsRemaining: 100
   bubble: {fileID: 8053081224781261315, guid: 5d8a2c5ceec069149bed0c13e8d403be, type: 3}
   possibleValues: 02000000040000000800000010000000200000004000000080000000
   colours:
