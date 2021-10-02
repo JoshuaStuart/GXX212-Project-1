@@ -6,30 +6,22 @@ public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
     public Transform spawnPoint;
-    float x;
+    float x,y;
 
-    public GameObject controlledBubble;
-
-    private void Start()
-    {
-        newControlledBubble();
-    }
 
     private void FixedUpdate()
     {
         x = Input.GetAxisRaw("Horizontal");
+        y = Input.GetAxisRaw("Vertical");
     }
 
     private void Update()
     {
-        controlledBubble.transform.position += new Vector3(x * moveSpeed * Time.deltaTime, 0, 0);
+        gameObject.transform.position += new Vector3(x * moveSpeed * Time.deltaTime, 0, y * moveSpeed * Time.deltaTime);
 
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
-            controlledBubble.GetComponent<Rigidbody>().useGravity = true;
-            controlledBubble.GetComponent<SphereCollider>().enabled = true;
-            controlledBubble = null;
             GameManager.instance.turnsRemaining -= 1;
 
             if(GameManager.instance.turnsRemaining > 0)
@@ -43,9 +35,6 @@ public class PlayerController : MonoBehaviour
     {
         GameObject newBubble = Instantiate(GameManager.instance.bubble);
         newBubble.transform.position = spawnPoint.position;
-        newBubble.GetComponent<Rigidbody>().useGravity = false;
-        newBubble.GetComponent<SphereCollider>().enabled = false;
-
-        controlledBubble = newBubble;
+        newBubble.GetComponent<SphereCollider>().enabled = true;
     }
 }
