@@ -31,6 +31,7 @@ public class BallScript : MonoBehaviour
     private void FixedUpdate()
     {
         GetComponent<Rigidbody>().AddForce(Vector3.up * gravity * Time.deltaTime);
+        gameObject.transform.forward = Camera.main.transform.forward;
         valueText.canvas.transform.forward = Camera.main.transform.forward;
     }
 

@@ -308,4 +308,5 @@ MonoBehaviour:
   value: 0
   gravity: 10
   randomGen: 1
+  storedBall: 0
   valueText: {fileID: 8053081224326332662}

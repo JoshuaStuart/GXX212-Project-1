@@ -19,11 +19,15 @@ public class PlayerController : MonoBehaviour
     {
         x = Input.GetAxisRaw("Horizontal");
         y = Input.GetAxisRaw("Vertical");
+
+        gameObject.transform.forward = Camera.main.transform.forward;
     }
 
     private void Update()
     {
-        gameObject.transform.position += new Vector3(x * moveSpeed * Time.deltaTime, 0, y * moveSpeed * Time.deltaTime);
+        //gameObject.transform.position += new Vector3(x * moveSpeed * Time.deltaTime, 0, y * moveSpeed * Time.deltaTime);
+        gameObject.transform.Translate(Vector3.forward * y * moveSpeed * Time.deltaTime);
+        gameObject.transform.Translate(Vector3.right * x * moveSpeed * Time.deltaTime);
         if(controlledBubble != null)
         {
             controlledBubble.transform.position = spawnPoint.position;

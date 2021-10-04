@@ -6,27 +6,21 @@ public class CameraRotate : MonoBehaviour
 {
     public float speed;
 
+    float x,y;
   
     private void Update()
     {
-        if (Input.GetKeyDown("z"))
-        {
-            SpinLeft();
-        }
-
-        if(Input.GetKeyDown("x"))
-        {
-            SpinRight();
-        }
+        x = Input.GetAxis("Mouse X");
+        y = Input.GetAxis("Mouse Y");
     }
 
-    private void SpinLeft()
+    private void FixedUpdate()
     {
-        transform.Rotate(new Vector3(0, speed, 0));
-    }
-
-    private void SpinRight()
-    {
-        transform.Rotate(new Vector3(0, -speed, 0));
+        //middle button held...
+        if (Input.GetMouseButton(2))
+        {
+            //transform.Rotate(new Vector3(-y * speed * Time.deltaTime, x * speed * Time.deltaTime, 0));
+            transform.Rotate(new Vector3(0, x * speed * Time.deltaTime, 0));
+        }
     }
 }

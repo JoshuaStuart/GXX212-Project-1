@@ -33,5 +33,6 @@ public class CombinationManager : MonoBehaviour
         storedCollisionObjects.Remove(obj2);
         Destroy(obj1);
         Destroy(obj2);
+        GetComponent<AudioSource>().Play();
     }
 }
