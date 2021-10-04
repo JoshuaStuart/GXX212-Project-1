@@ -10,6 +10,7 @@ public class BallScript : MonoBehaviour
     public float gravity = 9.8f;
 
     public bool randomGen = true;
+    public bool storedBall = false;
     [Header("UI")]
     public Text valueText;
 
