@@ -7,8 +7,10 @@ public class BallScript : MonoBehaviour
 {
     public int value;
 
-    public bool randomGen = true;
+    public float gravity = 9.8f;
 
+    public bool randomGen = true;
+    public bool storedBall = false;
     [Header("UI")]
     public Text valueText;
 
@@ -24,6 +26,12 @@ public class BallScript : MonoBehaviour
             valueText.text = value.ToString();
         }
         setColour();
+    }
+
+    private void FixedUpdate()
+    {
+        GetComponent<Rigidbody>().AddForce(Vector3.up * gravity * Time.deltaTime);
+        valueText.canvas.transform.forward = Camera.main.transform.forward;
     }
 
 
