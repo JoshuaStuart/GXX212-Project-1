@@ -9,12 +9,12 @@ public class CameraRotate : MonoBehaviour
   
     private void Update()
     {
-        if (Input.GetKeyDown("a"))
+        if (Input.GetKeyDown("z"))
         {
             SpinLeft();
         }
 
-        if(Input.GetKeyDown("d"))
+        if(Input.GetKeyDown("x"))
         {
             SpinRight();
         }
