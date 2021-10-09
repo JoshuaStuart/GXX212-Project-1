@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        //gameObject.transform.position += new Vector3(x * moveSpeed * Time.deltaTime, 0, y * moveSpeed * Time.deltaTime);
+        //Movement
         gameObject.transform.Translate(Vector3.forward * y * moveSpeed * Time.deltaTime);
         gameObject.transform.Translate(Vector3.right * x * moveSpeed * Time.deltaTime);
         if(controlledBubble != null)
@@ -33,20 +33,20 @@ public class PlayerController : MonoBehaviour
             controlledBubble.transform.position = spawnPoint.position;
         }
 
-        if ((Input.GetKeyUp(KeyCode.Space) || Input.GetMouseButtonDown(0)) && controlledBubble != null)
+        if (Input.GetKeyUp(KeyCode.Space) && controlledBubble != null)
         {
             GameManager.instance.turnsRemaining -= 1;
             controlledBubble.GetComponent<BallScript>().gravity = 10;
             controlledBubble.GetComponent<SphereCollider>().enabled = true;
             if(GameManager.instance.turnsRemaining > 0)
             {
-                newControlledBubble();
+                Invoke("newControlledBubble", 3);
             }
             else
             {
                 Destroy(controlledBubble);
             }
-
+            controlledBubble = null;
         }
 
         if(GameManager.instance.turnsRemaining > 0)
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
                 Destroy(controlledBubble);
                 newControlledBubble();
             }
-            else if (Input.GetMouseButtonDown(1)  && Inventory.instance.storedBubbles.Count > 0 && controlledBubble.GetComponent<BallScript>().storedBall == false)
+            else if (Input.GetMouseButtonDown(1)  && Inventory.instance.storedBubbles.Count > 0 && controlledBubble.GetComponent<BallScript>().storedBall == false && controlledBubble != false)
             {
                 Destroy(controlledBubble);
                 controlledBubble = null;
