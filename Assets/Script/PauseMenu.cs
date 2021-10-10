@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -13,8 +14,8 @@ public class PauseMenu : MonoBehaviour
     }
 
     void Update()
-    {        
-        if(Input.GetKeyDown(KeyCode.Escape))
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (canvas.gameObject.activeInHierarchy == false)
             {
@@ -25,7 +26,18 @@ public class PauseMenu : MonoBehaviour
             {
                 canvas.gameObject.SetActive(false);
                 Time.timeScale = 1;
-            }
+            } 
         }
+    }
+    
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void UnPause()
+    {
+        canvas.gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 }
