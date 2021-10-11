@@ -7,10 +7,12 @@ public class PauseMenu : MonoBehaviour
 {
 
     public Transform canvas;
+    public Transform controlCanvas;
 
     private void Start()
     {
         canvas.gameObject.SetActive(false);
+        controlCanvas.gameObject.SetActive(false);
     }
 
     void Update()
@@ -39,5 +41,17 @@ public class PauseMenu : MonoBehaviour
     {
         canvas.gameObject.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    public void ControlsOpen()
+    {
+        canvas.gameObject.SetActive(false);
+        controlCanvas.gameObject.SetActive(true);
+    }
+
+    public void BackButton()
+    {
+        controlCanvas.gameObject.SetActive(false);
+        canvas.gameObject.SetActive(true);
     }
 }
