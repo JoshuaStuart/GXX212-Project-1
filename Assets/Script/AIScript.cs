@@ -28,12 +28,30 @@ public class AIScript : MonoBehaviour
         {
             attack();
         }
+        if (blinded && Input.GetKeyDown(KeyCode.Space))
+        {
+            GameObject[] bubbles = GameObject.FindGameObjectsWithTag("Bubble");
+
+            foreach (GameObject bubble in bubbles)
+            {
+                bubble.GetComponent<BallScript>().valueText.enabled = true;
+            }
+            blinded = false;
+        }
+        if (inverted)
+        {
+            confused();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                inverted = false;
+            }
+        }
     }
 
 
     void calculating()
     {
-        attackTurn = GameManager.instance.turnsRemaining - Random.Range(5, GameManager.instance.turnsRemaining);
+        attackTurn = GameManager.instance.turnsRemaining - Random.Range(3, 10);
         currentState = stateMachine.waiting;
 
         amount = Random.Range(2, 8);
@@ -42,17 +60,56 @@ public class AIScript : MonoBehaviour
     void attack()
     {
         currentState = stateMachine.attacking;
-        if(amount != 0)
-        {
-            GameObject ob = Instantiate(obsticlePrefab);
-            ob.transform.position = new Vector3(Random.Range(-4, 4), Random.Range(2, 8), Random.Range(-4, 4));
 
-            amount -= 1;
+        deciding();
+        currentState = stateMachine.calulating;
+        calculating();
+    }
+    bool blinded = false;
+    void obstructed()
+    {
+        GameObject ob = Instantiate(obsticlePrefab);
+        ob.transform.position = new Vector3(Random.Range(-4, 4), Random.Range(2, 8), Random.Range(-4, 4));
+
+        amount -= 1;
+    }
+    void blinding()
+    {
+        GameObject[] bubbles = GameObject.FindGameObjectsWithTag("Bubble");
+
+        foreach(GameObject bubble in bubbles)
+        {
+            bubble.GetComponent<BallScript>().valueText.enabled = false;
+        }
+
+        blinded = true;
+    }
+    bool inverted = false;
+    void confused()
+    {
+        inverted = true;
+        PlayerController.instance.x = -PlayerController.instance.x;
+        PlayerController.instance.y = -PlayerController.instance.y;
+    }
+
+    void deciding()
+    {
+        int roll = Random.Range(0, 3);
+
+        if(roll == 0)
+        {
+            obstructed();
+            print("obstructed");
+        }
+        else if (roll == 1)
+        {
+            blinding();
+            print("blinded");
         }
         else
         {
-            currentState = stateMachine.calulating;
-            calculating();
+            confused();
+            print("confused");
         }
     }
 }

@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
     public float moveSpeed;
     public Transform spawnPoint;
-    float x,y;
+    [HideInInspector]
+    public float x,y;
 
     public GameObject controlledBubble;
 
     private void Start()
     {
+        instance = this;
         newControlledBubble();
     }
 
