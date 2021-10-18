@@ -535,7 +535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackTurn: 0
-  obsticlePrefab: {fileID: 6278032442691835934, guid: e6fa876950c36c744ab4e5383b37b3c5, type: 3}
+  obsticlePrefab: {fileID: 2752118858522145582, guid: 712f477fefcd6b24fafb1434936e0c32, type: 3}
   amount: 0
   currentState: 0
 --- !u!82 &188449677
