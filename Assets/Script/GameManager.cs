@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class GameManager : MonoBehaviour
     public List<Material> colours;
 
     GameObject[] allBubbles;
+
+    public GameObject winUI, lossUI;
 
     float lastTurnCountdown = 5;
 
@@ -39,6 +42,7 @@ public class GameManager : MonoBehaviour
             if(bubble.GetComponent<BallScript>().value == levelGoal && turnsRemaining > 0)
             {
                 print("LEVEL COMPLETED");
+                winUI.SetActive(true);
             }
         }
 
@@ -48,8 +52,21 @@ public class GameManager : MonoBehaviour
             if(lastTurnCountdown <= 0)
             {
                 print("LEVEL FAILED");
+                lossUI.SetActive(true);
             }
         }
     }
 
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
