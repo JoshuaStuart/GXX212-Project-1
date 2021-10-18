@@ -585,7 +585,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 60
   m_TargetDisplay: 0
 --- !u!114 &2410510062568785667
 MonoBehaviour:
@@ -1136,6 +1136,10 @@ PrefabInstance:
     - target: {fileID: 3727581560129130801, guid: d3825d34d6a63a3459f057f1acfbf2d2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051772130584815556, guid: d3825d34d6a63a3459f057f1acfbf2d2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7115431956644241219, guid: d3825d34d6a63a3459f057f1acfbf2d2, type: 3}
       propertyPath: m_RootOrder
