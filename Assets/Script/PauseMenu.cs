@@ -35,6 +35,7 @@ public class PauseMenu : MonoBehaviour
     public void ReturnToMenu()
     {
         SceneManager.LoadScene(0);
+        Time.timeScale = 1;
     }
 
     public void UnPause()
@@ -53,5 +54,10 @@ public class PauseMenu : MonoBehaviour
     {
         controlCanvas.gameObject.SetActive(false);
         canvas.gameObject.SetActive(true);
+    }
+
+    public void ButtonClick()
+    {
+        gameObject.GetComponent<AudioSource>().Play();
     }
 }
