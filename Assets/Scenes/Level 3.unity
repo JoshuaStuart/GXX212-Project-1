@@ -535,7 +535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackTurn: 0
-  obsticlePrefab: {fileID: 2752118858522145582, guid: 712f477fefcd6b24fafb1434936e0c32, type: 3}
+  obsticlePrefab: {fileID: 3412433039562328206, guid: ab1c9b17fac7d0e43bbe4cae561f2db8, type: 3}
   amount: 0
   currentState: 0
 --- !u!82 &188449677
@@ -1128,7 +1128,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.12, z: -21.8}
+  m_LocalPosition: {x: 0, y: 1.32, z: -17.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 619306634}

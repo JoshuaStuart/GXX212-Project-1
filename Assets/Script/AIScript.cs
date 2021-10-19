@@ -62,16 +62,22 @@ public class AIScript : MonoBehaviour
         currentState = stateMachine.attacking;
 
         deciding();
-        currentState = stateMachine.calulating;
-        calculating();
     }
     bool blinded = false;
     void obstructed()
     {
-        GameObject ob = Instantiate(obsticlePrefab);
-        ob.transform.position = new Vector3(Random.Range(-4, 4), Random.Range(2, 8), Random.Range(-4, 4));
+        if(amount != 0)
+        {
+            GameObject ob = Instantiate(obsticlePrefab);
+            ob.transform.position = new Vector3(Random.Range(-4, 4), Random.Range(2, 8), Random.Range(-4, 4));
 
-        amount -= 1;
+            amount -= 1;
+        }
+        else
+        {
+            currentState = stateMachine.calulating;
+            calculating();
+        }
     }
     void blinding()
     {
@@ -83,6 +89,8 @@ public class AIScript : MonoBehaviour
         }
 
         blinded = true;
+        currentState = stateMachine.calulating;
+        calculating();
     }
     bool inverted = false;
     void confused()
@@ -90,6 +98,9 @@ public class AIScript : MonoBehaviour
         inverted = true;
         PlayerController.instance.x = -PlayerController.instance.x;
         PlayerController.instance.y = -PlayerController.instance.y;
+
+        currentState = stateMachine.calulating;
+        calculating();
     }
 
     void deciding()

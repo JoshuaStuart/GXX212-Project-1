@@ -26,6 +26,7 @@ public class BallScript : MonoBehaviour
             valueText.text = value.ToString();
         }
         setColour();
+        generateSize();
     }
 
     private void FixedUpdate()
@@ -59,6 +60,16 @@ public class BallScript : MonoBehaviour
                 CombinationManager.instance.combineObjects();
             }
         }
+    }
+
+    public void generateSize()
+    {
+        float num = GameManager.instance.possibleValues.IndexOf(value) + 1;
+        num = num * 0.25f;
+
+        num += 0.25f;
+
+        transform.localScale = new Vector3(num, num, num);
     }
 
 }
