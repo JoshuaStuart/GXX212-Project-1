@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85931583ee4172b40a2d4db793077d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnsRemaining: 5
+  turnsRemaining: 30
   turnsTXT: {fileID: 428737779}
   levelGoal: 256
   bubble: {fileID: 8053081224781261315, guid: 5d8a2c5ceec069149bed0c13e8d403be, type: 3}
