@@ -38,17 +38,13 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Space) && controlledBubble != null)
         {
-            GameManager.instance.turnsRemaining -= 1;
             controlledBubble.GetComponent<BallScript>().gravity = 10;
             controlledBubble.GetComponent<SphereCollider>().enabled = true;
-            if(GameManager.instance.turnsRemaining > 0)
+            if(GameManager.instance.turnsRemaining > 1)
             {
-                Invoke("newControlledBubble", 3);
+                Invoke("newControlledBubble", 1);
             }
-            else
-            {
-                Destroy(controlledBubble);
-            }
+            GameManager.instance.turnsRemaining -= 1;
             controlledBubble = null;
         }
 

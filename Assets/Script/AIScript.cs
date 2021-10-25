@@ -1,12 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AIScript : MonoBehaviour
 {
     public int attackTurn;
     public GameObject obsticlePrefab;
-    public int amount = 0;
+    public Vector3 lvlBounds = new Vector3(3,3,3);
+    int amount = 0;
+
+
+
+    [Header("UI")]
+    public GameObject uiComponent;
+    public Text uiText;
+    string phrase;
 
     public enum stateMachine
     {
@@ -18,6 +27,7 @@ public class AIScript : MonoBehaviour
 
     private void Start()
     {
+        uiComponent.SetActive(false);
         currentState = stateMachine.calulating;
         calculating();
     }
@@ -28,15 +38,23 @@ public class AIScript : MonoBehaviour
         {
             attack();
         }
-        if (blinded && Input.GetKeyDown(KeyCode.Space))
+        if (blinded)
         {
             GameObject[] bubbles = GameObject.FindGameObjectsWithTag("Bubble");
 
             foreach (GameObject bubble in bubbles)
             {
-                bubble.GetComponent<BallScript>().valueText.enabled = true;
+                bubble.GetComponent<BallScript>().valueText.enabled = false;
             }
-            blinded = false;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+
+                foreach (GameObject bubble in bubbles)
+                {
+                    bubble.GetComponent<BallScript>().valueText.enabled = true;
+                }
+                blinded = false;
+            }
         }
         if (inverted)
         {
@@ -46,6 +64,11 @@ public class AIScript : MonoBehaviour
                 inverted = false;
             }
         }
+        if(uiText.gameObject.active == true)
+        {
+            uiText.text = phrase;
+        }
+
     }
 
 
@@ -53,31 +76,30 @@ public class AIScript : MonoBehaviour
     {
         attackTurn = GameManager.instance.turnsRemaining - Random.Range(3, 10);
         currentState = stateMachine.waiting;
-
-        amount = Random.Range(2, 8);
     }
 
     void attack()
     {
         currentState = stateMachine.attacking;
+        uiComponent.SetActive(true);
+        uiComponent.GetComponent<UIAI>().PlayAttackAnimation();
 
         deciding();
     }
     bool blinded = false;
     void obstructed()
     {
-        if(amount != 0)
+        amount = Random.Range(2, 8);
+        while (amount != 0)
         {
             GameObject ob = Instantiate(obsticlePrefab);
-            ob.transform.position = new Vector3(Random.Range(-4, 4), Random.Range(2, 8), Random.Range(-4, 4));
+            ob.transform.position = new Vector3(Random.Range(-lvlBounds.x, lvlBounds.x), Random.Range(0, lvlBounds.y), Random.Range(-lvlBounds.z, lvlBounds.z));
 
             amount -= 1;
+            phrase = "Freeze em!";
         }
-        else
-        {
-            currentState = stateMachine.calulating;
-            calculating();
-        }
+        currentState = stateMachine.calulating;
+        calculating();
     }
     void blinding()
     {
@@ -89,6 +111,7 @@ public class AIScript : MonoBehaviour
         }
 
         blinded = true;
+        phrase = "Pikeaboo!";
         currentState = stateMachine.calulating;
         calculating();
     }
@@ -98,6 +121,7 @@ public class AIScript : MonoBehaviour
         inverted = true;
         PlayerController.instance.x = -PlayerController.instance.x;
         PlayerController.instance.y = -PlayerController.instance.y;
+        phrase = "Righty loosy, Lefty tighty";
 
         currentState = stateMachine.calulating;
         calculating();

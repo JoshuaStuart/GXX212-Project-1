@@ -180,7 +180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2410510062873431695, guid: 1a81d5c521107744597f83d0906c7a5a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a81d5c521107744597f83d0906c7a5a, type: 3}
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85931583ee4172b40a2d4db793077d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnsRemaining: 20
+  turnsRemaining: 5
   turnsTXT: {fileID: 428737779}
   levelGoal: 128
   bubble: {fileID: 8053081224781261315, guid: 5d8a2c5ceec069149bed0c13e8d403be, type: 3}
@@ -345,6 +345,8 @@ MonoBehaviour:
   attackTurn: 0
   obsticlePrefab: {fileID: 3412433039562328206, guid: ab1c9b17fac7d0e43bbe4cae561f2db8, type: 3}
   amount: 0
+  uiComponent: {fileID: 8830150399716195901}
+  uiText: {fileID: 8830150399716195900}
   currentState: 0
 --- !u!82 &188449677
 AudioSource:
@@ -2194,3 +2196,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1627fb037177ad498b214435974a07a, type: 3}
+--- !u!114 &8830150399716195900 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5815838115082679380, guid: c1627fb037177ad498b214435974a07a, type: 3}
+  m_PrefabInstance: {fileID: 8830150399716195899}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &8830150399716195901 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8394701167014273006, guid: c1627fb037177ad498b214435974a07a, type: 3}
+  m_PrefabInstance: {fileID: 8830150399716195899}
+  m_PrefabAsset: {fileID: 0}
