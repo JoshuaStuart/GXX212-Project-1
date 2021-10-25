@@ -111,7 +111,7 @@ public class AIScript : MonoBehaviour
         }
 
         blinded = true;
-        phrase = "Pikeaboo!";
+        phrase = "Peak-a-boo!";
         currentState = stateMachine.calulating;
         calculating();
     }
